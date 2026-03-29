@@ -23,5 +23,4 @@ Receive notifications on enrollments.
 Provide course reviews and ratings.
 
 Services communicate only via REST, not by accessing each other’s database.
-UI interacts with multiple services.
-Optionally, one service may use a different programming language/framework.
+node js and ejbs
