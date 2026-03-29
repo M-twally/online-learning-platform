@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  mongo_db:
+    container_name: database_container2
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_db:/data/db
+    networks:
+      - my-network
+
+  node-app:
+    build: .
+    ports:
+      - "5001:8001"
+    environment:
+      - PORT=8001
+      - DB_URL=mongodb://mongo_db:27017/mono2
+      - SALT_ROUND=8
+      - TOKEN_SIGNATURE=Loserlolaaa
+      - EMAIL_PASSWORD=jqubhqjeatmprplt
+      - EMAIL=m.ametwally15@gmail.com
+      - EMAIL_SIGNATURE=LolaLoltenLola
+      - FETCH_USER_DATA=http://localhost:5000
+      - FETCH_STUDENT_EMAIL=http://localhost:8080/demo-1.0-SNAPSHOT/Api
+    depends_on:
+      - mongo_db
+    networks:
+      - my-network
+
+volumes:
+  mongo_db: {}
+
+networks:
+  my-network:
+    driver: bridge
